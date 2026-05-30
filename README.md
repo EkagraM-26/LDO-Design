@@ -1,36 +1,56 @@
-\# Analog Circuit Design Portfolio
+# Project 1 — Precision LDO Voltage Regulator
 
+## Overview
+3.3V / 500mA LDO regulator using TL431 shunt reference and TIP42C 
+PNP pass transistor. Designed, simulated, and laid out for PCB 
+fabrication as part of an analog design portfolio targeting TI 
+internship applications.
 
+## Specifications
 
-Designed and simulated analog circuits targeting TI's product lines.
+| Parameter        | Target       | Simulated  |
+|------------------|--------------|------------|
+| Vout             | 3.3V ±1%     | 3.308 V ✓  |
+| REF pin voltage  | 2.495 V      | 2.495 V ✓  |
+| PSRR @ 1kHz      | >60 dB       | TBD        |
+| Load regulation  | <1%          | TBD        |
+| Line regulation  | <0.5%        | TBD        |
+| Output noise     | <50 µV/√Hz   | TBD        |
+| Dropout voltage  | <300 mV      | ~690 mV    |
 
-Tools: LTspice XVII · KiCad 10 · TI component SPICE models
+## PCB & 3D Render
 
+![3D render](3D-renders/render_angle.png)
 
+## Simulation Waveforms
 
-\## Projects
+![Load transient](waveforms/load_transient.png)
+![Line regulation](waveforms/line_regulation.png)
+![PSRR](waveforms/psrr.png)
+![Output noise](waveforms/noise.png)
 
+## Design Decisions
+- TL431 chosen over Zener: 0.5% accuracy vs ~5% for Zener
+- PNP pass transistor (TIP42C): lower cost; PMOS gives better 
+  PSRR but requires gate drive — PNP simpler for discrete design
+- Cc = 100nF across R1 adds phase-compensating zero, reduces 
+  transient overshoot
+- Low-ESR Cout (100µF): too low ESR causes oscillation, too high 
+  degrades transient response
 
+## Files
+- `schematic.pdf` — KiCad 10 schematic
+- `pcb_layout.pdf` — PCB layout (2-layer)
+- `LDO.asc` — LTspice XVII simulation file
+- `TL431.sub` — TL431 behavioral SPICE model
+- `gerbers/` — Gerber files for PCB fabrication
+- `waveforms/` — Simulation result screenshots
+- `3D-renders/` — KiCad 3D PCB renders
 
-| # | Project | Key Result | TI Product Line |
+## Tools
+LTspice XVII · KiCad 10 · TI TL431 SPICE model
 
-|---|---------|------------|-----------------|
-
-| 1 | \[LDO Regulator](01\_LDO\_Regulator/) | Vout = 3.31V, PSRR >60dB | TPS7A, TLV series |
-
-| 2 | Sallen-Key Filter | Coming soon | OPA2320 |
-
-| 3 | Instrumentation Amp | Coming soon | INA128, INA333 |
-
-| 4 | Buck Converter | Coming soon | TPS54360 |
-
-
-
-\## Tools used
-
-\- LTspice XVII — SPICE simulation
-
-\- KiCad 10 — Schematic + PCB layout + 3D render
-
-\- TI behavioral SPICE models
-
+## References
+- TI TL431 Datasheet (SLVS543)
+- TI App Note SLVA756 — LDO Basics
+- TIP42C Datasheet — ST Microelectronics
