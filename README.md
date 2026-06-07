@@ -1,10 +1,7 @@
 # Project 1 — Precision LDO Voltage Regulator
 
 ## Overview
-3.3V / 500mA LDO regulator using TL431 shunt reference and TIP42C 
-PNP pass transistor. Designed, simulated, and laid out for PCB 
-fabrication as part of an analog design portfolio targeting TI 
-internship applications.
+Designed and validated a 3.3 V precision LDO regulator using a TL431 shunt reference and TIP42C PNP pass transistor. Achieved 3.308 V regulated output with 0.24% output voltage error and accurate 2.495 V reference operation. Completed schematic design, PCB layout, manufacturing documentation generation, and design verification through simulation and hardware implementation.
 
 ## Specifications
 
